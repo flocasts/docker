@@ -51,7 +51,7 @@ ENV JAVA_URL  https://s3.amazonaws.com/sysadminconfs/java/jdk/${PACKAGE}-${MAJOR
 # Download, install, 'trim' Java and cleanup
 RUN \
   apk add --no-cache --virtual=build-dependencies curl unzip && \
-  cd "/tmp" && \
+  mkdir /opt && \
   cd /opt && \
   curl -s -o ${PACKAGE}-${MAJOR}u${MINOR}-linux-x64.tar.gz ${JAVA_URL} && \
   tar zxf ${PACKAGE}-${MAJOR}u${MINOR}-linux-x64.tar.gz  && \
