@@ -1,6 +1,14 @@
-FROM node:10-alpine
+FROM node:12-alpine
 
 ENV LANG=C.UTF-8
+
+# Print versions
+RUN NODE_VERSION=$(node --version) && \
+    NPM_VERSION=$(npm --version) && \
+    GIT_VERSION=$(git --version) && \
+    echo "Node Version: ${NODE_VERSION}" && \
+    echo "NPM Version: ${NPM_VERSION}" && \
+    echo "GIT Version: ${GIT_VERSION}"
 
 RUN ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases/download" && \
     ALPINE_GLIBC_PACKAGE_VERSION="2.29-r0" && \
