@@ -5,10 +5,8 @@ ENV LANG=C.UTF-8
 # Print versions
 RUN NODE_VERSION=$(node --version) && \
     NPM_VERSION=$(npm --version) && \
-    GIT_VERSION=$(git --version) && \
     echo "Node Version: ${NODE_VERSION}" && \
-    echo "NPM Version: ${NPM_VERSION}" && \
-    echo "GIT Version: ${GIT_VERSION}"
+    echo "NPM Version: ${NPM_VERSION}"
 
 RUN ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases/download" && \
     ALPINE_GLIBC_PACKAGE_VERSION="2.29-r0" && \
@@ -59,7 +57,6 @@ ENV JAVA_URL  https://s3.amazonaws.com/sysadminconfs/java/jdk/${PACKAGE}-${MAJOR
 # Download, install, 'trim' Java and cleanup
 RUN \
   apk add --no-cache --virtual=build-dependencies curl unzip && \
-  mkdir /opt && \
   cd /opt && \
   curl -s -o ${PACKAGE}-${MAJOR}u${MINOR}-linux-x64.tar.gz ${JAVA_URL} && \
   tar zxf ${PACKAGE}-${MAJOR}u${MINOR}-linux-x64.tar.gz  && \
